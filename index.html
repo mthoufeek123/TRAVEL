@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wanderlyfe</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Boldonse&family=Coda:wght@800&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Libertinus+Mono&family=Michroma&family=Sevillana&display=swap"
+        rel="stylesheet" />
+
+    <link rel="icon"
+        href="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-1450-622f-bfcf-d940378da37c/raw?se=2025-07-13T22%3A25%3A41Z&sp=r&sv=2024-08-04&sr=b&scid=e3fc2e74-f151-5021-87ef-2eb4af08eea3&skoid=f28c0102-4d9d-4950-baf0-4a8e5f6cf9d4&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-13T06%3A33%3A32Z&ske=2025-07-14T06%3A33%3A32Z&sks=b&skv=2024-08-04&sig=V0IxbOPLpHvTMdopu0845BABHO7ympiCcLe1Pi4lnWI%3D">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .para-section {
+            background: url('https://c4.wallpaperflare.com/wallpaper/767/612/930/nature-landscape-trees-digital-art-wallpaper-preview.jpg') no-repeat center center/cover;
+            height: 100vh;
+            position: relative;
+            color: white;
+        }
+
+        .para-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 6%;
+        }
+
+        .para-btn {
+            background-color: #9b9ce7;
+            color: white;
+            font-weight: bold;
+            width: 40%;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .navbar {
+            z-index: 1000;
+        }
+
+
+        .read-more-btn {
+            background-color: #2a3f5a;
+            border: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: #5f91c9;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .post-card {
+            border: none;
+            border-radius: 10px;
+        }
+
+        .post-img {
+            transition: transform 0.4s ease;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .post-card:hover .post-img {
+            transform: scale(1.08);
+        }
+
+        .card-img-overlay {
+            background: rgba(0, 0, 0, 0.4);
+
+            transition: background 0.3s;
+        }
+
+        .post-card:hover .card-img-overlay {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .destination-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 6px;
+            transition: transform 0.4s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .destination-card:hover .destination-img {
+            transform: scale(1.05);
+        }
+
+        .destination-overlay {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: background-color 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .destination-card:hover .destination-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+
+
+        .blog-card{
+            transition: transform 0.3s ease;
+
+        }
+        .blog-card:hover{
+            transform: scale(1.03);
+
+        }
+
+        .blog-read-more {
+            background-color: #0b2547;
+            color: white;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-read-more:hover {
+            background-color: #5f91c9;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent position-absolute w-100">
+        <div class="container">
+
+            <a class="navbar-brand fs-3 fw-bold" href="#">Wanderlyfe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar">
+                <ul class="navbar-nav gap-3">
+                    <li><a class="nav-link" href="#">START HERE</a></li>
+                    <li><a class="nav-link" href="#">ABOUT</a></li>
+                    <li><a class="nav-link" href="#DEST">DESTINATIONS</a></li>
+                    <li><a class="nav-link" href="#blog">BLOG</a></li>
+                    <li><a class="nav-link" href="#">REMOTE JOBS</a></li>
+                    <li><a class="nav-link" href="#CONTACT">CONTACT</a></li>
+                    <li><a class="nav-link" href="#blog">START A BLOG</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="para-section">
+        <div class="para-overlay text-start">
+            <h1 class="display-4 fw-bold">Turn travel into a lifestyle.</h1>
+            <p class="fs-5 mt-3">We help creative adventurers earn money online doing what they love, so they can choose
+                their own hours, be their own boss and make a living while traveling the world.</p>
+            <a href="#" class="btn para-btn px-4 py-2 mt-3">GET OUR FREE EBOOK!</a>
+            <div class="scroll-down mt-5">
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="mb-4" style="font-weight: 300;">
+                        We Are <span class="fw-bold text-primary">Founders</span>
+                    </h2>
+                    <p class="mb-3 text-secondary">
+                        We are Nick & Dariece, the couple behind this blog. We left Canada in 2008 on a mission to find
+                        ways to travel & live abroad indefinitely.
+                    </p>
+                    <p class="mb-4 text-secondary">
+                        We’ve personally tried countless travel jobs and now we share our experiences and our best
+                        travel-supporting methods on this blog so you too can more easily afford your love for travel.
+                    </p>
+                    <a href="#" class="btn read-more-btn px-4 py-2">READ MORE</a>
+
+                </div>
+
+
+                <div class="col-lg-6 text-center">
+                    <img src="https://w0.peakpx.com/wallpaper/439/795/HD-wallpaper-messi-with-ronaldo-playing-chess-messi-ronaldo-chess-sports-footballer.jpg"
+                        alt="Nick and Dariece" class="img-fluid rounded shadow" width="300px" />
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="py-5 text-center bg-white">
+        <div class="container">
+            <p class="text-uppercase text-secondary mb-2">See what's new on the blog</p>
+            <h2 class="mb-4">
+                Our <span class="fw-bold text-primary">Latest Posts</span>
+            </h2>
+            <div class="row g-4 justify-content-center">
+
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card post-card text-white overflow-hidden">
+                        <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h5 class="card-title fw-bold text-center">20 Best Things to Do in Bari, Italy</h5>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVya2V5fGVufDB8fDB8fHww"
+                            class="card-img post-img" alt="Bari, Italy" height="550px">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card post-card text-white overflow-hidden">
+                        <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h5 class="card-title fw-bold text-center">15 Best Things To Do in Antalya, Turkey</h5>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVya2V5fGVufDB8fDB8fHww"
+                            class="card-img post-img" alt="Antalya, Turkey">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card post-card text-white overflow-hidden">
+                        <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h5 class="card-title fw-bold text-center">15 Best Things To Do in Fethiye, Turkey</h5>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVya2V5fGVufDB8fDB8fHww"
+                            class="card-img post-img" alt="Fethiye, Turkey">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card post-card text-white overflow-hidden">
+                        <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h5 class="card-title fw-bold text-center">21 Best Things To Do in Paros, Greece</h5>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHVya2V5fGVufDB8fDB8fHww"
+                            class="card-img post-img" alt="Paros, Greece">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="py-5 text-center bg-white">
+        <div class="container" id="DEST">
+            <p class="text-uppercase text-secondary mb-1">Detailed Destination Guides</p>
+            <h2 class="mb-4">Where Do You <span class="fw-bold text-primary">Want To Go?</span></h2>
+            <div class="row g-4 justify-content-center">
+
+
+                <div class="col-4 col-lg-3">
+                    <a href="#" class="destination-card d-block text-white text-decoration-none">
+                        <div class="destination-img"
+                            style="background-image: url('https://lp-cms-production.imgix.net/2025-01/GettyImages-2111967560-16.9.jpg?auto=format,compress&q=72&w=1440&h=810&fit=crop');">
+                            <div class="destination-overlay d-flex align-items-center justify-content-center">
+                                <h4 class="fw-bold">AFRICA</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-lg-3">
+                    <a href="#" class="destination-card d-block text-white text-decoration-none">
+                        <div class="destination-img"
+                            style="background-image: url('https://c4.wallpaperflare.com/wallpaper/994/253/68/japan-mountains-mount-fuji-asian-architecture-wallpaper-preview.jpg');">
+                            <div class="destination-overlay d-flex align-items-center justify-content-center">
+                                <h4 class="fw-bold">ASIA</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-lg-3">
+                    <a href="#" class="destination-card d-block text-white text-decoration-none">
+                        <div class="destination-img"
+                            style="background-image: url('https://wallpaperbat.com/img/11783-europe-landscape-wallpaper-top-free-europe-landscape.jpg');">
+                            <div class="destination-overlay d-flex align-items-center justify-content-center">
+                                <h4 class="fw-bold">EUROPE</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center my-4">
+                <div class="col-4 col-lg-3">
+                    <a href="#" class="destination-card d-block text-white text-decoration-none">
+                        <div class="destination-img"
+                            style="background-image: url('https://wallpapercave.com/wp/wp6376697.jpg');">
+                            <div class="destination-overlay d-flex align-items-center justify-content-center">
+                                <h4 class="fw-bold">MIDDLE EAST</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-lg-3">
+                    <a href="#" class="destination-card d-block text-white text-decoration-none">
+                        <div class="destination-img"
+                            style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLs2823Hh-CEQHWgri6YtXQxwENZ_giEB17A&s');">
+                            <div class="destination-overlay d-flex align-items-center justify-content-center">
+                                <h4 class="fw-bold">THE CARIBBEAN</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-4 col-lg-3">
+                    <a href="#" class="destination-card d-block text-white text-decoration-none">
+                        <div class="destination-img"
+                            style="background-image: url('https://wallpapers.com/images/featured/america-86f8kdqdjb94i270.jpg');">
+                            <div class="destination-overlay d-flex align-items-center justify-content-center">
+                                <h4 class="fw-bold">THE AMERICAS</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<section class="py-5 bg-light" id="blog">
+  <div class="container">
+    <div class="text-center mb-5">
+      <p class="text-uppercase text-muted small">Our Travel Journal</p>
+      <h2 class="fw-bold">Latest Blog Posts</h2>
+      <p class="text-secondary">Tips, stories, and guides from around the world</p>
+    </div>
+
+    <div class="row g-4">
+    
+      <div class="col-md-6 col-lg-4">
+        <div class="card blog-card border-0 shadow-sm h-100">
+          <img src="https://blogs.tripzygo.in/wp-content/uploads/2023/09/image-24-1024x683.png" class="card-img-top" alt="Post 1" >
+          <div class="card-body">
+            <h5 class="card-title fw-bold">10 Things to Do in Bali for First-Timers</h5>
+            <p class="card-text text-muted">From temples to beaches, discover why Bali is a backpacker's dream destination.</p>
+            <a href="#" class="btn btn-sm blog-read-more">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card blog-card border-0 shadow-sm h-100">
+          <img src="https://i.insider.com/67125f7001ea6d83dee21fbf?width=700" class="card-img-top" alt="Post 2" height="237px">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Ultimate Guide to Traveling Europe by Train</h5>
+            <p class="card-text text-muted">Plan your perfect rail journey across Europe, from scenic routes to sleeper cars.</p>
+            <a href="#" class="btn btn-sm blog-read-more">Read More →</a>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card blog-card border-0 shadow-sm h-100">
+          <img src="https://www.paradisecatchers.com/wp-content/uploads/2024/09/Digital-Nomad-Workspace.jpg" class="card-img-top" alt="Post 3" height="237px">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">5 Remote Work Destinations in South America</h5>
+            <p class="card-text text-muted">Where fast Wi-Fi meets breathtaking nature and cost-friendly living.</p>
+            <a href="#" class="btn btn-sm blog-read-more">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="collapse mt-4" id="moreBlogs">
+      <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="card blog-card border-0 shadow-sm h-100">
+            <img src="https://i0.wp.com/walkslowrunwild.com/wp-content/uploads/2017/12/Tims-mens-clothing-packing-list-for-long-term-travel.jpg?resize=860%2C573&quality=80&strip=all&ssl=1" class="card-img-top" alt="Post 4" height="200px">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Packing Tips for Long-Term Travel</h5>
+              <p class="card-text text-muted">How to pack light and smart for weeks or months on the road without forgetting essentials.</p>
+              <a href="#" class="btn btn-sm blog-read-more">Read More →</a>
+            </div>
+          </div>
+        </div>
+
+       
+        <div class="col-md-6 col-lg-4">
+          <div class="card blog-card border-0 shadow-sm h-100">
+            <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2024-08/07/full/1722995892-9811.jpg?im=FeatureCrop,size=(826,465)" class="card-img-top" alt="Post 5">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">How to Find Cheap Flights</h5>
+              <p class="card-text text-muted">Best tools and tricks to get budget-friendly flights for global adventures.</p>
+              <a href="#" class="btn btn-sm blog-read-more">Read More →</a>
+            </div>
+          </div>
+        </div>
+
+       
+        <div class="col-md-6 col-lg-4">
+          <div class="card blog-card border-0 shadow-sm h-100">
+            <img src="https://storage.googleapis.com/stateless-www-justwravel-com/2025/02/ebef2b03-a-beginners-guide-to-solo-travel-for-women-how-to-plan-safety-tips-1.png" class="card-img-top" alt="Post 6">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Travel Safety Tips for Solo Travelers</h5>
+              <p class="card-text text-muted">Smart and simple safety practices to make solo travel fun and worry-free.</p>
+              <a href="#" class="btn btn-sm blog-read-more">Read More →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="text-center mt-4">
+      <button class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#moreBlogs" aria-expanded="false" aria-controls="moreBlogs">
+        View All Blog Posts
+      </button>
+    </div>
+  </div>
+</section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted" id="CONTACT">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+
+            <!-- Right -->
+            <div>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Wanderlyfe
+                        </h6>
+                        <p>
+                            Here you can use rows and columns to organize your footer content. Lorem ipsum
+                            dolor sit amet, consectetur adipisicing elit.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Products
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Angular</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">React</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Vue</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Laravel</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Pricing</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Settings</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Orders</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Help</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            info@example.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2021 Copyright:
+            <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
